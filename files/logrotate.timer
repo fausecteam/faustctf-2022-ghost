@@ -1,0 +1,12 @@
+[Unit]
+Description=Minutely rotation of log files
+Documentation=man:logrotate(8) man:logrotate.conf(5)
+
+[Timer]
+OnCalendar=*:0/1
+AccuracySec=1s
+Persistent=false
+Unit=logrotate.service
+
+[Install]
+WantedBy=timers.target

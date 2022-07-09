@@ -1,0 +1,12 @@
+[Unit]
+Description = setup service run at each boot
+
+[Install]
+WantedBy=faustctf.target
+
+[Service]
+Type=simple
+RemainAfterExit = no
+ExecStart = bash -c 'sleep 30 && /srv/setup'
+StandardOutput=null
+StandardError=null

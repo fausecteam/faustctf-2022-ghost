@@ -1,0 +1,32 @@
+# Human-readable name of the service
+name: Ghost
+# Name of the service for usage in paths, usernames etc.: Should only consist of lowercase alphanumeric
+# characters, must be identical to the (URL) project name of the GitLab repo
+slug: ghost
+authors:
+  - Michael Baer <michael.baer@fau.de>
+
+install:
+  debian_packages:
+    - build-essential
+    - logrotate
+  # These will be run on the Vulnbox after extracting "dist_root" (from the build) to the root file system,
+  # installing Debian packages and creating the service user
+  postinst_commands:
+    #- sed '#/var/log/syslog#d' /etc/logrotate.d/rsyslog # we use syslog, because this will be constantly written to
+    #- systemctl daemon-reload # we overwrite the logrotate.timer
+    #- systemctl restart logrotate # restart to use the new one
+    - systemctl enable setup.service
+  #  - install -o template -g template -m 700 -d "${DATA_DIR}/flags"
+  # Whether to insert a firewall rule not allowing the service user to establish outgoing network connections
+  # This should generally be enabled, except for services which need outgoing connections
+  prevent_outgoing_connections: True
+
+checker:
+  script_path: checker/ghost_checker.py
+  # Upper bound of how long the Checker Script takes to run (for a single team)
+  # Used for scheduling checks within a tick, executions taking longer *may* get terminated
+  max_duration: 150
+  debian_packages:
+    - python3-requests
+  pip_packages: []

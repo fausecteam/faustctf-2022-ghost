@@ -1,0 +1,27 @@
+- richtiger folder konsistent:
+	mkdir /var/log/folder
+
+
+Features: etc.:
+- clear folder after some time
+
+
+Ideas:
+- https://www.welivesecurity.com/2017/10/30/windigo-ebury-update-2/
+- cronrat (https://sansec.io/research/cronrat)
+- ufw portknocking für communication
+	- über ssh port 1. channel?
+
+Misc:
+- check all decode to be errorsave with binary stuff
+- unify PORTS
+- Checker
+- Configure list of IPs in build.py
+- remove debugs (code.py, marty.conf.in, ..?)
+- check for different errors/connection problems / make it robust
+- Check multithreading des perma_servers
+- setup-time: Service should not be active in the first 1h
+- limit number of commands for each sender (in permaserver, but also code.py to make it visible. Limit should be high enough to extract all flags)
+- check flask resources
+- timeouts! 120s is a long time for 3minuts ticks
+- service recovering
